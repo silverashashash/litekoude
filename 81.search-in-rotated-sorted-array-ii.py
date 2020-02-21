@@ -52,17 +52,20 @@ class Solution:
         start, end = 0, len(nums) - 1
 
         while start + 1 < end:
-            mid = (start + end) // 2 
+            mid = (start + end) // 2
+            # mid and end are in the same section 
             if nums[mid] < nums[end]:
                 if nums[mid] <= target <= nums[end]:
                     start = mid 
                 else:
-                    end = mid - 1 
+                    end = mid - 1
+            # mid and end  are in different section
             elif nums[mid] > nums[end]:
                 if nums[start] <= target <= nums[mid]:
                     end = mid
                 else:
-                    start = mid + 1 
+                    start = mid + 1
+            # nums[mid] == nums[end]
             else:
                 end -=  1 
 
