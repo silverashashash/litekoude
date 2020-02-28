@@ -30,22 +30,20 @@
 #
 
 # @lc code=start
+import sys
 class Solution:
     def minCut(self, s: str) -> int:
         if not s:
             return 0
 
-        dp = [0] * (len(s) + 1)
-        for i in range(len(dp)):
-            dp[i] = i - 1
-        #dp[0] = 0 
+        dp = [sys.maxsize] * (len(s) + 1)
+        dp[0] = 0 
         print(dp)
 
         for i in range(1, len(dp)):
             for j in range(i):
                 if self.is_palindrome(s[j:i + 1]):
-                    dp[i] = min(dp[j], dp[i]) + 1
-
+                    dp[i] = min(dp[i], dp[j] + 1)
         print(dp)
         return dp[-1] - 1
         
